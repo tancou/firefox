@@ -1,5 +1,8 @@
 FROM jlesage/firefox:v24.01.1
 
+RUN apk add --no-cache openssh
+COPY rootfs/ /
+
 RUN num=$(grep -n -m 1 "# Window size." /etc/services.d/xvnc/params | cut -d: -f1) && \
     sed -i "${num}i\if is-bool-val-true \"\${DISABLE_CLIPBOARD:-1}\"; then\n    echo '-AcceptCutText=0'\n    echo '-SendCutText=0'\n    echo '-noclipboard'\nfi\n" /etc/services.d/xvnc/params
 

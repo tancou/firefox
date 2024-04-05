@@ -4,5 +4,6 @@ services:
       context: .
     ports:
       - 5800:5800
+      - 2200:22
     env_file:
       - .env
